@@ -1,2 +1,0 @@
-This file was created by nodejs!
-This is the new line!
