@@ -1,16 +1,10 @@
 const fs = require('fs');
 
-const getNotes = function () {
-    return 'Your notes...';
-};
-
-const addNote = function (title, desc) {
+const addNote = (title, desc) => {
     const notes = loadNotes();
-    const duplicateNotes = notes.filter((note) => {
-        return note.title === title;
-    });
+    const duplicateNote = notes.find((note) => note.title === title);
 
-    if (duplicateNotes.length ===  0) {
+    if (!duplicateNote) {
         notes.push( {
             title: title,
             desc: desc
@@ -23,9 +17,7 @@ const addNote = function (title, desc) {
 
 const removeNote= (title) => {
     const notes = loadNotes();
-    const notesToKeep = notes.filter((note) => {
-        return note.title != title;
-    });
+    const notesToKeep = notes.filter((note) => note.title != title);
 
     if (notes.length !== notesToKeep.length) {
         saveNotes(notesToKeep);
@@ -35,7 +27,26 @@ const removeNote= (title) => {
     }
 };
 
-const loadNotes = function () {
+const listNotes = () => {
+    const notes = loadNotes();
+    notes.forEach((note) => {
+        console.log(note);
+    })
+    return notes;
+}
+
+const readNote = (title) => {
+    const notes = loadNotes();
+    const note = notes.find((note) => note.title === title);
+
+    if (note) {
+        console.log(note);
+    } else {
+        console.log('No note found!!!');
+    }
+};
+
+const loadNotes = () => {
     try {
         const dataBuffer = fs.readFileSync('notes.json');
         const notes = JSON.parse(dataBuffer.toString());
@@ -50,4 +61,9 @@ const saveNotes = (notes) => {
     fs.writeFileSync('notes.json', dataJSON);
 };
 
-module.exports = {getNotes, addNote, removeNote};
+module.exports = {
+    addNote, 
+    removeNote, 
+    listNotes, 
+    readNote
+};
