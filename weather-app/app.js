@@ -1,11 +1,18 @@
-console.log('Starting!!!');
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
 
-setTimeout(() => {
-    console.log('2 Seconds Timer');
-}, 2000);
+geocode('Ha Noi', (error, data) => {
+    if (error) {
+        console.log('Error', error);
+    } else {
+        console.log('Geocode:', data);
+    }
+});
 
-setTimeout(() => {
-    console.log('0 Seconds Timer');
-}, 0);
-
-console.log('Stopping!!!');
+forecast('Ha Noi', (error, data) => {
+    if (error) {
+        console.log('Error', error);
+    } else {
+        console.log('Weather:', data);
+    }
+});
