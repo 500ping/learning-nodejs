@@ -1,18 +1,17 @@
 const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast');
 
-geocode('Ha Noi', (error, data) => {
+geocode('HaNoi', (error, {location}) => {
     if (error) {
         console.log('Error', error);
-    } else {
-        console.log('Geocode:', data);
-    }
-});
+    } 
 
-forecast('Ha Noi', (error, data) => {
-    if (error) {
-        console.log('Error', error);
-    } else {
-        console.log('Weather:', data);
-    }
+    forecast(location, (error, data) => {
+        if (error) {
+            console.log('Error', error);
+        } else {
+            console.log('Location:', location);
+            console.log('Weather:', data);
+        }
+    });
 });
