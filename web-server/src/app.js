@@ -1,32 +1,44 @@
 const express = require('express');
 const path = require('path');
+const hbs = require('hbs');
 
 const app = express();
 
 const port = 3000;
-const publicDIR = path.join(__dirname, '../public');
-const viewsDIR = path.join(__dirname, '../views');
 
+// Define Paths For Express Config
+const publicDIR = path.join(__dirname, '../public');
+const viewsDIR = path.join(__dirname, '../templates/views');
+const partialsDIR = path.join(__dirname, '../templates/partials');
+
+// Setup Handlebars Engine And Views Location
 app.set('view engine', 'hbs');
 app.set('views', viewsDIR);
+hbs.registerPartials(partialsDIR);
+
+// Setup Static Directory
 app.use(express.static(publicDIR));
+
+const myName = 'Thang Nguyen';
 
 app.get('', (req, res) => {
     res.render('index', {
         title: 'Weather App',
-        name: 'Thang Nguyen'
+        name: myName
     });
 });
 
 app.get('/about', (req, res) => {
     res.render('about', {
-        title: 'About Page'
+        title: 'About Page',
+        name: myName
     });
 });
 
 app.get('/help', (req, res) => {
     res.render('help', {
-        title: 'Help Page'
+        title: 'Help Page',
+        name: myName
     });
 });
 
