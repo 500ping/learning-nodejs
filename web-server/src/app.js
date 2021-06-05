@@ -42,6 +42,20 @@ app.get('/help', (req, res) => {
     });
 });
 
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        errorMessage: 'Article Not Found',
+        name: myName
+    });
+});
+
+app.get('*', (req, res) => {
+    res.render('404', {
+        errorMessage: '404 Not Found',
+        name: myName
+    });
+});
+
 app.listen(port, () => {
     console.log('Server is up on port ' + port);
 });
