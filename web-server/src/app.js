@@ -35,6 +35,25 @@ app.get('/about', (req, res) => {
     });
 });
 
+app.get('/weather', (req, res) => {
+    res.send({
+        forecast: 'It is raining',
+        location: 'Ha Noi'
+    });
+});
+
+app.get('/products', (req, res) => {
+    if (!req.query.search) {
+        return res.send({
+            error: 'You must provide a search term'
+        });
+    };
+
+    res.send({
+        products: []
+    });
+});
+
 app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help Page',
