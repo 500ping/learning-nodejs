@@ -1,17 +1,17 @@
-// Object Property Shorthand
+// // Object Property Shorthand
 
-const name = 'Thang';
-const age = 23;
+// const name = 'Thang';
+// const age = 23;
 
-const user = {
-    name,
-    age: age,
-    location: 'Ha Noi'
-}
+// const user = {
+//     name,
+//     age: age,
+//     location: 'Ha Noi'
+// }
 
-// console.log(user);
+// // console.log(user);
 
-// Object Destructuring
+// // Object Destructuring
 
 const product = {
     label: 'Notebook',
@@ -21,12 +21,13 @@ const product = {
     rating: 4.6
 }
 
-const {label: productLabel, stock, rating = 5} = product;
+// const {label: productLabel, stock, rating = 5} = product;
 
 // console.log(productLabel, stock, rating);
 
-const transaction = (type, {label, rating}) => {
+const transaction = (type, {label, rating = 0} = {}) => {
      console.log(type, label, rating);
 };
 
 transaction('order', product);
+// transaction('order');
