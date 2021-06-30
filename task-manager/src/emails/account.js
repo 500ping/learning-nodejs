@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 
-const username = 'a4ddbd835df777'
-const password = '4394060d0f799d'
+const username = process.env.MAILTRAP_USERNAME
+const password = process.env.MAILTRAP_PASSWORD
 
 const transport = nodemailer.createTransport({
     host: "smtp.mailtrap.io",
